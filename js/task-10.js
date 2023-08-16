@@ -13,10 +13,21 @@ createBtn.addEventListener('click', createBoxes);
 destroyBtn.addEventListener('click', destroyBoxes);
 
 function createBoxes() {
-  const amount = +controls.querySelector('input').value;
+  // const amount = +controls.querySelector('input').value;
+  const input = controls.querySelector('input');
+  const min = +input.min;
+  const max = +input.max;
+  const step = +input.step;
+
+  const amount = +input.value;
+  if (amount < min || amount > max) {
+    return;
+  }
+
   const boxes = [];
 
-  for(let i = 0; i < amount; i += 1) {
+  // for(let i = 0; i < amount; i += 1) {
+  for (let i = 0; i < amount; i += step) {
     const boxSize = 30 + i * 10;
     const boxColor = getRandomHexColor();
 
